@@ -31,7 +31,7 @@ public class MainGenerator {
         // 找整个项目的根路径 sokloly-generator
         File parentFile = new File(projectPath).getParentFile();
         // 输入路径 ACM的示例模板 在 sokloly-generator-demo-projects 目录下
-        String inputPath = new File(parentFile + File.separator + "sokloly-generator-demo-projects/acm-template").getAbsolutePath();
+        String inputPath = new File(parentFile + File.separator + "code-forge-demo-projects/acm-template").getAbsolutePath();
         // 输出路径
         String outputPath = projectPath;
         // 生成静态文件
