@@ -28,9 +28,9 @@ public class MainGenerator {
     public static void doGenerate(Object model) throws TemplateException, IOException {
         // 当前idea打开的窗口
         String projectPath = System.getProperty("user.dir");
-        // 找整个项目的根路径 sokloly-generator
+        // 找整个项目的根路径 code-forge
         File parentFile = new File(projectPath).getParentFile();
-        // 输入路径 ACM的示例模板 在 sokloly-generator-demo-projects 目录下
+        // 输入路径 ACM的示例模板 在 code-forge-demo-projects 目录下
         String inputPath = new File(parentFile + File.separator + "code-forge-demo-projects/acm-template").getAbsolutePath();
         // 输出路径
         String outputPath = projectPath;
