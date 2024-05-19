@@ -6,7 +6,8 @@
   "author": "sokoly",
   "createTime": "2024-5-18",
   "fileConfig": {
-    "inputRootPath": "E:/Develop/project/yupi_xingqiu/code-forge/code-forge-demo-projects/acm-template-pro",
+    "sourceRootPath": "E:/Develop/project/yupi_xingqiu/code-forge/code-forge-demo-projects/acm-template-pro",
+    "inputRootPath": ".source/acm-template-pro",
     "outputRootPath": "generated",
     "type": "dir",
     "files": [
