@@ -1,6 +1,6 @@
 package com.sokoly.generator;
 
-import com.sokoly.model.MainTemplateConfig;
+import cn.hutool.core.io.FileUtil;
 import freemarker.template.TemplateException;
 
 import java.io.File;
@@ -10,14 +10,6 @@ import java.io.IOException;
  * 第二期の核心生成器
  */
 public class MainGenerator {
-    public static void main(String[] args) throws TemplateException, IOException {
-        MainTemplateConfig mainTemplateConfig = new MainTemplateConfig();
-        mainTemplateConfig.setAuthor("sokoly");
-        mainTemplateConfig.setLoop(false);
-        mainTemplateConfig.setOutputText("最终的求和结果：");
-        doGenerate(mainTemplateConfig);
-    }
-
     /**
      * 生成静态文件和动态文件
      *
@@ -26,19 +18,25 @@ public class MainGenerator {
      * @throws IOException
      */
     public static void doGenerate(Object model) throws TemplateException, IOException {
-        // 当前idea打开的窗口
-        String projectPath = System.getProperty("user.dir");
-        // 找整个项目的根路径 code-forge
-        File parentFile = new File(projectPath).getParentFile();
-        // 输入路径 ACM的示例模板 在 code-forge-demo-projects 目录下
-        String inputPath = new File(parentFile + File.separator + "code-forge-demo-projects/acm-template").getAbsolutePath();
-        // 输出路径
-        String outputPath = projectPath;
-        // 生成静态文件
-        StaticGenerator.copyFilesByRecursive(inputPath, outputPath);
-        // 生成动态文件，会覆盖部分已生成的静态文件
-        String inputDynamicFilePath = projectPath + File.separator + "src/main/resources/templates/MainTemplate.java.ftl";
-        String outputDynamicFilePath = projectPath + File.separator + "acm-template/src/com/yupi/acm/MainTemplate.java";
-        DynamicGenerator.doGenerate(inputDynamicFilePath, outputDynamicFilePath, model);
+        String inputRootPath = "E:\\Develop\\project\\yupi_xingqiu\\code-forge\\code-forge-demo-projects\\acm-template-pro";
+        String outputRootPath= "E:\\Develop\\project\\yupi_xingqiu\\code-forge\\acm-template-pro";
+        if (!FileUtil.exist(outputRootPath)) {
+            FileUtil.mkdir(outputRootPath);
+        }
+        String inputPath;
+        String outputPath;
+
+        inputPath =new File(inputRootPath,"src/com/yupi/acm/MainTemplate.java.ftl").getAbsolutePath();
+        outputPath= new File(outputRootPath,"src/com/yupi/acm/MainTemplate.java").getAbsolutePath();
+        DynamicGenerator.doGenerate(inputPath,outputPath,model);
+
+        inputPath =new File(inputRootPath,".gitignore").getAbsolutePath();
+        outputPath =new File(outputRootPath,".gitignore").getAbsolutePath();
+        StaticGenerator.copyFilesByHutool(inputPath,outputPath);
+
+        inputPath =new File(inputRootPath,"README.md").getAbsolutePath();
+        outputPath =new File(outputRootPath,"README.md").getAbsolutePath();
+        StaticGenerator.copyFilesByHutool(inputPath,outputPath);
+
     }
 }

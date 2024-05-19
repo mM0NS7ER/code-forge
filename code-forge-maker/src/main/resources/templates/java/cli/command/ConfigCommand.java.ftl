@@ -1,7 +1,7 @@
-package com.sokoly.cli.command;
+package ${basePackage}.cli.command;
 
 import cn.hutool.core.util.ReflectUtil;
-import com.sokoly.model.MainTemplateConfig;
+import ${basePackage}.model.DataModel;
 import picocli.CommandLine.Command;
 
 import java.lang.reflect.Field;
@@ -15,7 +15,7 @@ public class ConfigCommand implements Runnable {
         //Class<?>myClass = MainTemplateConfig.class;
         //获取类的所有字段
         //Field[] fields = myClass.getDeclaredFields();
-        Field[] fields = ReflectUtil.getFields(MainTemplateConfig.class);
+        Field[] fields = ReflectUtil.getFields(DataModel.class);
         //遍历并打印每个字段的信息
         for (Field field : fields) {
             System.out.println("字段名称：" + field.getName());

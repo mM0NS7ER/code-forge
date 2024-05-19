@@ -1,12 +1,12 @@
-package com.sokoly.cli;
+package ${basePackage}.cli;
 
-import com.sokoly.cli.command.ConfigCommand;
-import com.sokoly.cli.command.GenerateCommand;
-import com.sokoly.cli.command.ListCommand;
+import ${basePackage}.cli.command.ConfigCommand;
+import ${basePackage}.cli.command.GenerateCommand;
+import ${basePackage}.cli.command.ListCommand;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
-@Command(name = "sokoly", mixinStandardHelpOptions = true)
+@Command(name = "${name}", mixinStandardHelpOptions = true)
 public class CommandExecutor implements Runnable {
     private final CommandLine commandLine;
 

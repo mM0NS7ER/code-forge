@@ -1,7 +1,6 @@
-package com.sokoly.generator;
+package com.sokoly.maker.generator.file;
 
 import cn.hutool.core.io.FileUtil;
-import com.sokoly.model.MainTemplateConfig;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -14,19 +13,7 @@ import java.io.Writer;
 /**
  * 动态文件生成
  */
-public class DynamicGenerator {
-    public static void main(String[] args) throws TemplateException, IOException {
-        // 当前idea打开的窗口
-        String projectPath = System.getProperty("user.dir");
-        String inputPath = projectPath + File.separator + "src/main/resources/templates/MainTemplate.java.ftl";
-        String outputPath = projectPath + File.separator + "MainTemplate2.java";
-        MainTemplateConfig mainTemplateConfig = new MainTemplateConfig();
-        // 这次使用循环
-        mainTemplateConfig.setLoop(true);
-        mainTemplateConfig.setAuthor("sokoly");
-        mainTemplateConfig.setOutputText("求和结果：");
-        doGenerate(inputPath, outputPath, mainTemplateConfig);
-    }
+public class DynamicFileGenerator {
 
     /**
      * @param inputPath  模板文件输入路径
@@ -50,11 +37,10 @@ public class DynamicGenerator {
         String templateName = new File(inputPath).getName();
         Template template = configuration.getTemplate(templateName);
 
-        // 创建数据模型，从Main方法传递过来⏬
-
+        //文件不存在则创建文件和父目录
         if (!FileUtil.exist(outputPath)) {
             FileUtil.touch(outputPath);
-        };
+        }
 
         // 生成
         Writer out = new FileWriter(outputPath);
