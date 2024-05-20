@@ -6,7 +6,7 @@ import cn.hutool.json.JSONUtil;
 public class MetaManager {
     private static volatile Meta meta;
     private MetaManager() {
-//私有构造函数，防止外部实例化
+    //私有构造函数，防止外部实例化
     }
 
     public static Meta getMetaObject() {
