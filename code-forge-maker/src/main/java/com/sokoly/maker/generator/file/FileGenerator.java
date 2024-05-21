@@ -1,6 +1,5 @@
 package com.sokoly.maker.generator.file;
 
-import com.sokoly.maker.model.DataModel;
 import freemarker.template.TemplateException;
 
 import java.io.File;
@@ -10,14 +9,6 @@ import java.io.IOException;
  * 第二期の核心生成器
  */
 public class FileGenerator {
-    public static void main(String[] args) throws TemplateException, IOException {
-        DataModel dataModel = new DataModel();
-        dataModel.setAuthor("sokoly");
-        dataModel.setLoop(false);
-        dataModel.setOutputText("最终的求和结果：");
-        doGenerate(dataModel);
-    }
-
     /**
      * 生成静态文件和动态文件
      *
