@@ -13,6 +13,7 @@ import com.sokoly.maker.meta.enums.FileTypeEnum;
 import com.sokoly.maker.template.enums.FileFilterRangeEnum;
 import com.sokoly.maker.template.enums.FileFilterRuleEnum;
 import com.sokoly.maker.template.model.FileFilterConfig;
+import com.sokoly.maker.template.model.TemplateMakerConfig;
 import com.sokoly.maker.template.model.TemplateMakerFileConfig;
 import com.sokoly.maker.template.model.TemplateMakerModelConfig;
 
@@ -108,6 +109,22 @@ public class TemplateMaker {
     }
 
     /**
+     * 制作模板（新增）
+     *
+     * @param templateMakerConfig
+     * @return
+     */
+    public static long makeTemplate(TemplateMakerConfig templateMakerConfig) {
+        Meta meta = templateMakerConfig.getMeta();
+        Long id = templateMakerConfig.getId();
+        String originProjectPath = templateMakerConfig.getOriginProjectPath();
+        TemplateMakerFileConfig templateMakerFileConfig = templateMakerConfig.getFileConfig();
+        TemplateMakerModelConfig templateMakerModelConfig = templateMakerConfig.getModelConfig();
+
+        return makeTemplate(meta, id, originProjectPath, templateMakerFileConfig, templateMakerModelConfig);
+    }
+
+    /**
      * 制作模板（分步能力制作）
      *
      * @param newMeta
@@ -117,7 +134,7 @@ public class TemplateMaker {
      * @param templateMakerModelConfig
      * @return
      */
-    private static long makeTemplate(Meta newMeta, Long id, String originProjectPath, TemplateMakerFileConfig templateMakerFileConfig, TemplateMakerModelConfig templateMakerModelConfig) {
+    public static long makeTemplate(Meta newMeta, Long id, String originProjectPath, TemplateMakerFileConfig templateMakerFileConfig, TemplateMakerModelConfig templateMakerModelConfig) {
         // 没有 id 则生成
         if (id == null) {
             id = IdUtil.getSnowflakeNextId();
